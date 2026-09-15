@@ -195,9 +195,10 @@ function Footer() {
 
                         {/* Parent Company Documentation Info Box */}
                         <div className="mt-5 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200/60 dark:border-slate-800/80 text-xs text-slate-400 space-y-1">
-                            <p className="font-semibold text-slate-700 dark:text-slate-300">A Concern of M Traders Last LLC</p>
-                            <p className="text-slate-500 dark:text-slate-500">1317 85 DUNSTALL HILL</p>
-                            <p className="text-slate-500 dark:text-slate-500">WOLVERHAMPTON WV6 0SR</p>
+                            <p className="font-semibold text-slate-700 dark:text-slate-300">A Concern of M TRADERS HK LIMITED</p>
+                            <p className="text-slate-500 dark:text-slate-500">Unit B, 11/F, Yam Tze Commercial Building
+23 Thomson Road, Wan Chai
+Hong Kong</p>
                         </div>
                     </div>
 
@@ -205,7 +206,7 @@ function Footer() {
 
                 {/* Bottom Section: Legal Links & Copyright */}
                 <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-                    <p>© {currentYear} EduHub. An Educational Platform by M Traders Last LLC. All rights reserved.</p>
+                    <p>© {currentYear} EduHub. An Educational Platform by M TRADERS HK LIMITED. All rights reserved.</p>
 
                     {/* Legal Links */}
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
