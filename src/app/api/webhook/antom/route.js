@@ -6,14 +6,18 @@ export async function POST(req) {
         const body = await req.json();
 
         const orderId = body.paymentRequestId;
-        const paymentStatus = body.paymentStatus || body.result?.resultStatus;
+        const paymentStatus = body.paymentStatus || body.paymentResultStatus || body.result?.resultStatus;
         const notifyType = body.notifyType;
         const paymentId = body.paymentId || body.transactionId || 'UNKNOWN_PROOF_ID';
 
         console.log('ANTOM WEBHOOK RECEIVED');
         console.log(`Processing Order ID: ${orderId} | Status: ${paymentStatus}`);
 
-        const isPaymentSuccessful = paymentStatus === 'SUCCESS' || paymentStatus === 'S' || notifyType === 'CAPTURE_RESULT';
+        const isPaymentSuccessful =
+            paymentStatus === 'SUCCESS' ||
+            paymentStatus === 'S' ||
+            notifyType === 'CAPTURE_RESULT';
+
         const finalStatus = isPaymentSuccessful ? 'SUCCESS' : 'FAILED';
 
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://edu-hub-server-4gwz.onrender.com';
