@@ -52,6 +52,7 @@ export async function POST(req) {
         const clientId = process.env.ANTOM_CLIENT_ID;
         const requestTime = new Date().toISOString();
         const webhookUrl = `${appUrl}/api/webhook/antom`;
+        const redirectUrl = `${appUrl}/api/payment-return`;
 
         const payload = {
             productCode: "CASHIER_PAYMENT",
@@ -72,20 +73,10 @@ export async function POST(req) {
             },
             availablePaymentMethod: {
                 paymentMethodTypeList: [
-                    {
-                        paymentMethodType: "CARD"
-                    },
-                    {
-                        paymentMethodType: "GOOGLEPAY",
-                        expressCheckout: false
-                    },
-                    {
-                        paymentMethodType: "APPLEPAY",
-                        expressCheckout: false
-                    },
-                    {
-                        paymentMethodType: "ALIPAY_HK"
-                    }
+                    { paymentMethodType: "CARD" },
+                    { paymentMethodType: "GOOGLEPAY", expressCheckout: false },
+                    { paymentMethodType: "APPLEPAY", expressCheckout: false },
+                    { paymentMethodType: "ALIPAY_HK" }
                 ]
             },
             buyer: {
@@ -99,7 +90,7 @@ export async function POST(req) {
             env: {
                 terminalType: "WEB"
             },
-            paymentRedirectUrl: `${appUrl}/api/payment-return`,
+            paymentRedirectUrl: redirectUrl,
             paymentNotifyUrl: webhookUrl,
             passThroughInfo: JSON.stringify({ courseId, customerEmail, customerName })
         };
