@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, ChevronRight, X, FolderKanban, FilePlusCorner, UserPen, LucideFilePlusCorner, Video, } from "lucide-react";
+import { LayoutDashboard, ChevronRight, X, FolderKanban, FilePlusCorner, UserPen, LucideFilePlusCorner, Video, CreditCard } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 const MENU_CONFIG = {
@@ -11,6 +11,7 @@ const MENU_CONFIG = {
         { name: "Manage Course", href: "/dashboard/admin/manage-course", icon: FolderKanban },
         { name: "Add Course", href: "/dashboard/admin/add-course", icon: FilePlusCorner },
         { name: "Add Blog", href: "/dashboard/admin/add-blog", icon: LucideFilePlusCorner },
+        { name: "Payment Gateway", href: "/dashboard/admin/payment-gateway", icon: CreditCard },
         { name: "Profile", href: "/my-profile", icon: UserPen },
     ],
 

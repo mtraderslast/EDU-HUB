@@ -1,9 +1,11 @@
-// app/checkout/[id]/CheckoutClient.jsx
 'use client';
 
-import { useState } from 'react';
-import { CreditCard, CheckCircle2, ShieldCheck, User, Mail } from 'lucide-react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { CreditCard, CheckCircle2, ShieldCheck, User, Mail, Loader2 } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { authClient } from '@/lib/auth-client';
+import { fetchActiveGateway } from '@/lib/action/payment';
+import { getGatewayInfo } from '@/lib/paymentGateways';
 
 export default function CheckoutClient({ courseData }) {
     const initialTitle = courseData?.title || 'Course Enrollment';
@@ -11,56 +13,121 @@ export default function CheckoutClient({ courseData }) {
     const initialImage = courseData?.image || '';
     const courseId = courseData?._id || '';
 
+    const isFreeCourse = Number(initialPrice) <= 0;
+
     const [customPrice, setCustomPrice] = useState(initialPrice);
     const [customerName, setCustomerName] = useState('');
     const [customerEmail, setCustomerEmail] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const { data: session } = authClient.useSession();
+    useEffect(() => {
+        if (session?.user) {
+            setCustomerName((prev) => prev || session.user.name || '');
+            setCustomerEmail((prev) => prev || session.user.email || '');
+        }
+    }, [session]);
+
+    const [activeGateway, setActiveGateway] = useState('');
+    const [isGatewayLoading, setIsGatewayLoading] = useState(true);
+
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
+
+    useEffect(() => {
+        let cancelled = false;
+
+        fetchActiveGateway()
+            .then((data) => {
+                if (!cancelled && data?.activeGateway) setActiveGateway(data.activeGateway);
+            })
+            .catch(() => {})
+            .finally(() => {
+                if (!cancelled) setIsGatewayLoading(false);
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     const handleProceedToPayment = async () => {
-        if (!customPrice || Number(customPrice) <= 0) {
-            alert('Please enter a valid amount.');
+        const sendsAmount = !(isFreeCourse && Number(customPrice) <= 0);
+
+        if (sendsAmount && (!customPrice || Number(customPrice) <= 0)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Invalid Amount',
+                text: 'Please enter a valid amount to proceed.',
+                confirmButtonColor: '#04cccc'
+            });
+            return;
+        }
+
+        if (!customerEmail) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Email Required',
+                text: 'Please enter your email address.',
+                confirmButtonColor: '#04cccc'
+            });
             return;
         }
 
         setIsLoading(true);
 
         try {
-            const response = await fetch('/api/antom-pay', {
+            const response = await fetch(`${backendUrl}/api/payments/initiate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     courseId,
-                    title: initialTitle,
-                    amount: Number(customPrice),
-                    currency: 'USD',
+                    ...(sendsAmount && { amount: Number(customPrice) }),
                     customerName,
                     customerEmail
                 }),
             });
 
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Payment initiation failed on server');
+            }
+
             const data = await response.json();
 
             if (data.success && data.checkoutUrl) {
                 window.location.href = data.checkoutUrl;
+            } else if (data.success && data.orderId) {
+                window.location.href = `/payment-return?orderId=${encodeURIComponent(data.orderId)}`;
             } else {
-                alert(data.message || 'Failed to initiate payment. Please try again.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Payment Error',
+                    text: data.message || 'Failed to initialize payment session.',
+                    confirmButtonColor: '#04cccc'
+                });
             }
         } catch (error) {
             console.error('Payment Error:', error);
-            alert('Something went wrong during payment processing.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Connection Error',
+                text: error.message || 'Unable to connect to payment server.',
+                confirmButtonColor: '#04cccc'
+            });
         } finally {
             setIsLoading(false);
         }
     };
 
+    const currentGateway = getGatewayInfo(activeGateway);
+
     return (
         <div className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-slate-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center transition-colors duration-300">
-            {/* আপনার আগের সম্পূর্ণ ডিজাইন কোড এখানে হুবুহু বসবে */}
             <div className="max-w-4xl w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
-                {/* Course Summary Section */}
                 <div className="p-8 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between">
                     <div>
                         <span className="inline-block px-3 py-1 bg-[#04cccc]/10 text-[#04cccc] text-xs font-semibold rounded-full mb-4 border border-[#04cccc]/20">
@@ -88,12 +155,11 @@ export default function CheckoutClient({ courseData }) {
                         </div>
                         <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
                             <ShieldCheck className="w-4 h-4 text-[#04cccc]" />
-                            <span>Encrypted & Secure Antom Gateway</span>
+                            <span>Encrypted & Secure {currentGateway.name || 'Payment'} Gateway</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Custom Payment Form Section */}
                 <div className="p-8 flex flex-col justify-between bg-white/50 dark:bg-slate-900/50">
                     <div>
                         <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-2">
@@ -101,7 +167,6 @@ export default function CheckoutClient({ courseData }) {
                             Payment Summary
                         </h2>
 
-                        {/* Customer Info */}
                         <div className="space-y-4 mb-6 bg-white dark:bg-black p-4 rounded-xl border border-slate-200 dark:border-slate-800">
                             <div>
                                 <label className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2">
@@ -129,7 +194,6 @@ export default function CheckoutClient({ courseData }) {
                             </div>
                         </div>
 
-                        {/* Amount Input */}
                         <div className="mb-6 flex flex-col items-center justify-center py-4">
                             <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
                                 Total Payable (USD)
@@ -151,24 +215,37 @@ export default function CheckoutClient({ courseData }) {
                     <div className="mt-auto">
                         <button
                             onClick={handleProceedToPayment}
-                            disabled={isLoading}
-                            className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#04cccc] to-[#15a3a3] hover:opacity-90 text-white font-bold text-base transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50"
+                            disabled={isLoading || isGatewayLoading}
+                            className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#04cccc] to-[#15a3a3] hover:opacity-90 text-white font-bold text-base transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                         >
                             {isLoading ? (
-                                <span>Redirecting...</span>
+                                <div className="flex items-center gap-2">
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    <span>Redirecting...</span>
+                                </div>
                             ) : (
                                 <div className="flex items-center justify-center gap-2">
                                     <span>Proceed to Payment</span>
-                                    <Image src="https://cdn.marmot-cloud.com/storage/intl_website/2026/03/23/EgIXCDK/logo_antom.svg" alt="Antom" width={30} height={30} className="h-5 w-auto object-contain" />
+                                    {currentGateway.logo && (
+                                        <img
+                                            src={currentGateway.logo}
+                                            alt={currentGateway.name}
+                                            className="h-5 w-auto object-contain bg-white/20 rounded px-1"
+                                        />
+                                    )}
                                 </div>
                             )}
                         </button>
-                        <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-500">
-                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                            <span>Secured and powered by <strong>Antom</strong></span>
-                        </div>
+
+                        {currentGateway.name && (
+                            <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-500">
+                                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>Secured and powered by <strong>{currentGateway.name}</strong></span>
+                            </div>
+                        )}
                     </div>
                 </div>
+
             </div>
         </div>
     );

@@ -196,7 +196,7 @@ const AdminEnrollments = () => {
                                         </td>
 
                                         <td className="px-6 py-4">
-                                            <p className="font-medium">৳ {item.amount || 0}</p>
+                                            <p className="font-medium">{item.currency || 'USD'} {item.amount || 0}</p>
                                             <div className="flex flex-col text-xs mt-0.5 text-slate-500 dark:text-slate-400">
                                                 <span>Gateway: {item.gateway}</span>
                                                 {item.proofId && <span>Proof: <span className="text-[#04cccc]">{item.proofId}</span></span>}
