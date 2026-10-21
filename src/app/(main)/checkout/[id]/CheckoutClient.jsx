@@ -97,16 +97,7 @@ export default function CheckoutClient({ courseData }) {
 
             const data = await response.json();
 
-            if (data.success && data.paymentSessionData) {
-                sessionStorage.setItem(
-                    'antomCheckout',
-                    JSON.stringify({
-                        sessionData: data.paymentSessionData,
-                        environment: data.environment === 'prod' ? 'prod' : 'sandbox',
-                    })
-                );
-                window.location.href = '/antom-checkout';
-            } else if (data.success && data.checkoutUrl) {
+            if (data.success && data.checkoutUrl) {
                 window.location.href = data.checkoutUrl;
             } else if (data.success && data.orderId) {
                 window.location.href = '/payment-success';
