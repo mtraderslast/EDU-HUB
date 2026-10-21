@@ -100,7 +100,7 @@ export default function CheckoutClient({ courseData }) {
             if (data.success && data.checkoutUrl) {
                 window.location.href = data.checkoutUrl;
             } else if (data.success && data.orderId) {
-                window.location.href = `/payment-return?orderId=${encodeURIComponent(data.orderId)}`;
+                window.location.href = '/payment-success';
             } else {
                 Swal.fire({
                     icon: 'error',
