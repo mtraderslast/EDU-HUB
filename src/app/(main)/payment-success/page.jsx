@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { CheckCircle2 } from 'lucide-react';
+import { Suspense } from 'react';
+import PaymentSuccessClient from './PaymentSuccessClient';
 
 export const metadata = {
     title: 'Payment successful',
@@ -7,22 +7,14 @@ export const metadata = {
 
 export default function PaymentSuccessPage() {
     return (
-        <div className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-slate-100 flex items-center justify-center p-4">
-            <div className="max-w-md w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center shadow-2xl">
-                <div className="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="w-10 h-10" />
+        <Suspense
+            fallback={
+                <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
+                    <div className="w-10 h-10 border-4 border-[#04cccc]/20 border-t-[#04cccc] rounded-full animate-spin" />
                 </div>
-                <h1 className="text-2xl font-bold mb-2">Thank you</h1>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">
-                    Your payment was successful. You now have access to the course.
-                </p>
-                <Link
-                    href="/dashboard/user/courses"
-                    className="inline-block w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#04cccc] to-[#15a3a3] hover:opacity-90 text-white font-bold transition-all text-center"
-                >
-                    Go to My Courses
-                </Link>
-            </div>
-        </div>
+            }
+        >
+            <PaymentSuccessClient />
+        </Suspense>
     );
 }

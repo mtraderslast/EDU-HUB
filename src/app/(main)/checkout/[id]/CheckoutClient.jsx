@@ -98,9 +98,13 @@ export default function CheckoutClient({ courseData }) {
             const data = await response.json();
 
             if (data.success && data.checkoutUrl) {
+                if (data.orderId) {
+                    sessionStorage.setItem('eduHubOrderId', data.orderId);
+                }
                 window.location.href = data.checkoutUrl;
             } else if (data.success && data.orderId) {
-                window.location.href = '/payment-success';
+                sessionStorage.setItem('eduHubOrderId', data.orderId);
+                window.location.href = `/payment-success?orderId=${encodeURIComponent(data.orderId)}`;
             } else {
                 Swal.fire({
                     icon: 'error',

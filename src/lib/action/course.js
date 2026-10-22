@@ -8,7 +8,15 @@ export const fetchAllCourse = (params = {}) => {
 };
 
 export const fetchCourseDetails = (id) => {
-    return apiHandler(() => axios.get(`${API_URL}/${id}`));
+    return apiHandler(() => axios.get(`${API_URL}/${id}`, { withCredentials: true }));
+};
+
+export const fetchEnrolledCourseContent = (id) => {
+    return apiHandler(() => axios.get(`${API_URL}/${id}/learn`, { withCredentials: true }));
+};
+
+export const fetchMyCourses = () => {
+    return apiHandler(() => axios.get(`${API_URL}/my-courses`, { withCredentials: true }));
 };
 
 export const createCourse = (CourseData) => {
