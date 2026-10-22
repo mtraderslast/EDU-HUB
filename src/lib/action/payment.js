@@ -16,3 +16,7 @@ export const switchPaymentGateway = (gateway) => {
         axios.patch(`${API_URL}/admin/switch-gateway`, { gateway }, { withCredentials: true })
     );
 };
+
+export const fetchPaymentStatus = (orderId) => {
+    return apiHandler(() => axios.get(`${API_URL}/status/${encodeURIComponent(orderId)}`));
+};

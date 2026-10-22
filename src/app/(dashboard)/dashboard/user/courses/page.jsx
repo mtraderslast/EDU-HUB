@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, Fragment } from 'react';
-import { fetchMyEnrolledCourses } from '@/lib/action/enrollment';
+import Link from 'next/link';
+import { fetchMyCourses } from '@/lib/action/course';
 import {
     PlayCircle,
     Calendar,
@@ -26,7 +27,7 @@ export default function EnrolledCoursesTable() {
     const loadCourses = async () => {
         try {
             setIsLoading(true);
-            const response = await fetchMyEnrolledCourses();
+            const response = await fetchMyCourses();
 
             const courseData = response?.data?.data || response?.data || [];
 
@@ -142,6 +143,11 @@ export default function EnrolledCoursesTable() {
                                                             <CheckCircle2 className="w-3.5 h-3.5" /> Paid
                                                         </span>
                                                     )}
+                                                    {item.paymentStatus === 'PENDING' && (
+                                                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600 dark:text-amber-400">
+                                                            Pending
+                                                        </span>
+                                                    )}
                                                     {item.isAccessGranted && (
                                                         <span className="text-[10px] uppercase tracking-wider font-bold text-[#04cccc]">Access Granted</span>
                                                     )}
@@ -159,14 +165,19 @@ export default function EnrolledCoursesTable() {
                                                         {expandedRow === item._id ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                                                     </button>
 
-                                                    {/* Start Course Button */}
-                                                    <button
-                                                        className="py-2.5 px-5 rounded-lg bg-gradient-to-r from-[#04cccc] to-[#15a3a3] hover:opacity-90 text-white font-bold text-sm transition-all shadow-md shadow-[#04cccc]/20 flex items-center gap-2 whitespace-nowrap"
-                                                        onClick={() => window.location.href = `/courses/${item.courseId}/learn`}
-                                                    >
-                                                        <PlayCircle className="w-4 h-4" />
-                                                        Start Course
-                                                    </button>
+                                                    {item.isAccessGranted ? (
+                                                        <Link
+                                                            href={`/courses/${item.courseId}/learn`}
+                                                            className="py-2.5 px-5 rounded-lg bg-gradient-to-r from-[#04cccc] to-[#15a3a3] hover:opacity-90 text-white font-bold text-sm transition-all shadow-md shadow-[#04cccc]/20 flex items-center gap-2 whitespace-nowrap"
+                                                        >
+                                                            <PlayCircle className="w-4 h-4" />
+                                                            Start Course
+                                                        </Link>
+                                                    ) : (
+                                                        <span className="py-2.5 px-5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-semibold text-sm whitespace-nowrap">
+                                                            Awaiting Payment
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </td>
                                         </tr>

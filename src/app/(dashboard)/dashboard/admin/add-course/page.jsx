@@ -1,5 +1,6 @@
 "use client";
 import { createCourse } from '@/lib/action/course';
+import { isYouTubeUrl } from '@/lib/youtube';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -11,6 +12,7 @@ export default function AddCourseForm() {
             category: 'Development',
             description: '',
             image: '',
+            videoUrl: '',
             price: '',
             duration: '',
             level: 'Beginner',
@@ -36,6 +38,7 @@ export default function AddCourseForm() {
         const finalData = {
             ...data,
             price: Number(data.price),
+            videoUrl: data.videoUrl.trim(),
             whatYouWillLearn,
             targetAudience,
             requirements,
@@ -179,6 +182,26 @@ export default function AddCourseForm() {
                         placeholder="https://example.com/image.png"
                     />
                     {errors.image && <p className="text-red-500 text-xs mt-1">{errors.image.message}</p>}
+                </div>
+
+                {/* YouTube Video URL */}
+                <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                        YouTube Video URL *
+                    </label>
+                    <input
+                        {...register('videoUrl', {
+                            required: 'YouTube video URL is required',
+                            validate: (value) => isYouTubeUrl(value.trim()) || 'Please provide a valid YouTube video URL'
+                        })}
+                        type="url"
+                        className="w-full p-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#04cccc]"
+                        placeholder="https://www.youtube.com/watch?v=..."
+                    />
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Paid or unlisted YouTube link. Students can watch it only after enrollment.
+                    </p>
+                    {errors.videoUrl && <p className="text-red-500 text-xs mt-1">{errors.videoUrl.message}</p>}
                 </div>
 
                 {/* Description */}
