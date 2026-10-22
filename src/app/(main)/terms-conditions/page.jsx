@@ -13,7 +13,7 @@ export default function TermsAndConditions() {
                         </span>
                     </h1>
                     <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-3xl">
-                        Last updated: July 26, 2026. Please read these terms and conditions carefully before using EduHub services.
+                        Last updated: October 22, 2026. Please read these terms and conditions carefully before using EduHub services.
                     </p>
                 </header>
 
@@ -26,10 +26,10 @@ export default function TermsAndConditions() {
                             1. Introduction and Acceptance of Terms
                         </h2>
                         <p>
-                            Welcome to EduHub. These Terms and Conditions govern your access to and use of the EduHub website, mobile applications, interactive features, and online educational content. By creating an account, enrolling in a course, or interacting with our platform, you agree to be legally bound by these terms.
+                            Welcome to EduHub. The EduHub website and learning platform are owned and operated by <strong>M Traders HK Limited</strong>. These Terms and Conditions govern your access to and use of the EduHub website, mobile applications, interactive features, and online educational content provided under the management of M Traders HK Limited. By creating an account, enrolling in a course, or interacting with our platform, you agree to be legally bound by these terms.
                         </p>
                         <p>
-                            If you do not agree to all of the terms and conditions stated herein, you must immediately discontinue your use of our platform. EduHub reserves the right to modify, amend, or update these terms at any time without prior individual notice.
+                            All references to “EduHub”, “we”, “us”, or “our” in these terms mean the EduHub platform operated by M Traders HK Limited. If you do not agree to all of the terms and conditions stated herein, you must immediately discontinue your use of our platform. EduHub reserves the right to modify, amend, or update these terms at any time without prior individual notice.
                         </p>
                     </section>
 
@@ -97,7 +97,10 @@ export default function TermsAndConditions() {
                             All course purchases on EduHub are final and non-refundable under standard conditions. Students are expected to carefully review the syllabus, course preview, and prerequisites prior to completing a purchase.
                         </p>
                         <p>
-                            <strong>Refund Claim Exceptions:</strong> A refund request will only be considered if a student encounters severe errors, factually incorrect information, or significant technical flaws in the course content that directly prevent successful learning progress. All refund claims must be submitted to the Help Team accompanied by verifiable proof, which will be audited by EduHub management for approval.
+                            <strong>Access issues and technical faults:</strong> If a student cannot take or continue a purchased course due to an access problem or a technical issue on our side, the student must notify our Help Team. We will investigate and resolve the issue within <strong>24 hours</strong> of receiving the report.
+                        </p>
+                        <p>
+                            <strong>Refund Claim Exceptions:</strong> If the issue remains after that 24-hour resolution window and the student still wishes to return the course, a refund request will be reviewed against the specific reason provided. The request must include verifiable proof. Where the reason and evidence are accepted, EduHub will refund the course payment within <strong>24 hours</strong>. Full details are set out in our Refund Policy.
                         </p>
                     </section>
 
@@ -133,6 +136,8 @@ export default function TermsAndConditions() {
                             If you have any questions or concerns regarding these Terms & Conditions, please reach out to our legal and support team:
                         </p>
                         <div className="pt-2 text-left">
+                            <p><strong>Operating Company:</strong> M Traders HK Limited</p>
+                            <p><strong>Platform:</strong> EduHub</p>
                             <p><strong>Email:</strong> hello@mtraderslastllc.com</p>
                             <p><strong>Support Portal:</strong> EduHub Helpdesk Center</p>
                         </div>

@@ -13,7 +13,7 @@ export default function RefundPolicy() {
                         </span>
                     </h1>
                     <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-3xl">
-                        Last updated: July 26, 2026. Review our official refund guidelines, evaluation terms, and claims process for EduHub courses.
+                        Last updated: October 22, 2026. Review our official refund guidelines, evaluation terms, and claims process for EduHub courses operated by M Traders HK Limited.
                     </p>
                 </header>
 
@@ -36,49 +36,46 @@ export default function RefundPolicy() {
                     {/* Section 2 */}
                     <section className="space-y-4">
                         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 pb-2 border-b border-slate-100 dark:border-slate-900 text-left">
-                            2. Exceptional Circumstances for Refund Claims
+                            2. Access Problems and Technical Issues
                         </h2>
                         <p>
-                            At EduHub, we maintain high standards of content precision and technical integrity. While our standard policy is non-refundable, we acknowledge that rare instances may occur where course content contains severe factual errors, critical misinformations, or defective materials that directly hinder a student's ability to proceed with their learning journey.
+                            If a student has enrolled in a course and then cannot access it, cannot continue taking it, or is blocked by a technical problem on our side, the student should report the issue to our Help Team as soon as possible.
                         </p>
                         <p>
-                            A refund claim will only be accepted for formal review under the specific condition that the enrolled student discovers a major error, incorrect technical instruction, or platform functionality flaw within the purchased course that prevents reasonable progress, and where EduHub's technical team fails to resolve or rectify the issue within a reasonable timeframe.
+                            Once we receive the report, EduHub will investigate and resolve the access or technical problem within <strong>24 hours</strong>. Our first obligation is to restore the student’s ability to take the course. Change of mind, personal scheduling conflicts, lack of personal effort, or issues limited to the student’s own device or internet connection are not treated as platform technical faults.
                         </p>
                     </section>
 
                     {/* Section 3 */}
                     <section className="space-y-4">
                         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 pb-2 border-b border-slate-100 dark:border-slate-900 text-left">
-                            3. Verification Standards and Submitting Solid Proof
+                            3. Refund After the Issue Has Been Addressed
                         </h2>
                         <p>
-                            To prevent fraudulent claims and protect the integrity of our educational platform, any student seeking a refund under the exceptional circumstances outlined above must submit a formal request to our Help Team accompanied by concrete, verifiable proof. Verbal statements or general complaints without supporting technical documentation will not be considered.
+                            If, after we have resolved or attempted to resolve the reported problem within 24 hours, the student still cannot reasonably take the course and wishes to return it for a refund, the student may submit a formal refund request.
                         </p>
                         <p>
-                            Valid proof must include comprehensive documentation such as unedited video screen recordings demonstrating the specific course error, detailed screenshots of failing code outputs caused directly by faulty course instructions, time-stamped logs of technical glitches, and clear evidence of communication showing that the issue severely disrupts learning.
+                            The request must state the specific reason for returning the course and must include verifiable proof of the problem. Verbal statements or general complaints without supporting evidence will not be considered. Valid proof may include unedited screen recordings, screenshots, time-stamped error logs, and records of communication with our Help Team.
                         </p>
                     </section>
 
                     {/* Section 4 */}
                     <section className="space-y-4">
                         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 pb-2 border-b border-slate-100 dark:border-slate-900 text-left">
-                            4. Review, Evaluation, and Approval Process
+                            4. Review of Reason and Proof
                         </h2>
                         <p>
-                            Upon receiving a refund claim with the required proof, EduHub’s dedicated Help and Quality Assurance Team will initiate a manual review. The investigation process follows strict procedures:
+                            Upon receiving a refund request with the required reason and proof, EduHub’s Help Team will review the claim. The process is as follows:
                         </p>
                         <ul className="list-disc pl-6 space-y-2 text-left">
                             <li>
-                                <strong>Audit & Investigation:</strong> Our senior instructors and technical auditors will reproduce the reported error using the exact parameters provided in your claim.
+                                <strong>Report first:</strong> Access or technical problems must be reported so we can restore the course within 24 hours.
                             </li>
                             <li>
-                                <strong>Technical Resolution Attempt:</strong> If the reported error can be corrected, updated, or resolved by our technical team within 5 business days, the course material will be fixed and the refund request will be marked as resolved.
+                                <strong>Reason and proof:</strong> If the student still requests a refund afterwards, we will examine the specific reason given and the evidence submitted.
                             </li>
                             <li>
-                                <strong>Evaluation Period:</strong> Official claim evaluations generally take between 5 to 7 business days from the date of receiving complete documentation.
-                            </li>
-                            <li>
-                                <strong>Final Determination:</strong> If the audit confirms that the course contains fundamental, unresolvable errors that render the course unusable as advertised, EduHub management will approve the refund. EduHub holds sole discretion in determining whether submitted evidence meets the criteria for a refund.
+                                <strong>Decision:</strong> Where the stated reason is valid and the proof supports it, the refund will be approved. EduHub holds sole discretion in determining whether submitted evidence meets these criteria.
                             </li>
                         </ul>
                     </section>
@@ -92,7 +89,7 @@ export default function RefundPolicy() {
                             Once a refund request is officially approved by EduHub management, the user's course access, lifetime dashboard privileges, and eligibility for weekly 1-on-1 mentorship sessions for that course will be permanently revoked immediately.
                         </p>
                         <p>
-                            Approved refunds will be processed back to the original payment method utilized during the initial transaction (e.g., credit card, debit card, or supported digital gateway) within <strong>1 business day (24 hours)</strong> after approval.
+                            Where the reason and proof are accepted, we will refund the course payment to the original payment method used at checkout (for example, card or supported digital gateway) within <strong>24 hours</strong>.
                         </p>
                     </section>
 
@@ -105,6 +102,7 @@ export default function RefundPolicy() {
                             If you believe your situation meets the criteria for an exceptional refund claim, or if you need to submit verifiable proof to our support desk, please contact our Help Team directly at:
                         </p>
                         <div className="pt-2 text-left">
+                            <p><strong>Operating Company:</strong> M Traders HK Limited</p>
                             <p><strong>Official Contact Email:</strong> hello@mtraderslastllc.com</p>
                             <p><strong>Support Channel:</strong> EduHub Helpdesk & Ticket System</p>
                         </div>
