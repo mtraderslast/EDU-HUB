@@ -139,12 +139,12 @@ function Footer() {
                                 <div>
                                     <p className="font-medium text-slate-800 dark:text-slate-200">Phone / WhatsApp</p>
                                     <a
-                                        href="tel:+44 7882740776"
+                                        href="tel:+852 4618 7388"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-xs text-slate-500 hover:text-teal-500 transition-colors block"
                                     >
-                                        +44 7882740776
+                                        +852 4618 7388
                                     </a>
                                 </div>
                             </li>
