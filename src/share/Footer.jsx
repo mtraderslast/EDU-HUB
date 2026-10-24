@@ -19,7 +19,7 @@ function Footer() {
         { name: "Student Code of Conduct", href: "/code-of-conduct" },
     ];
 
-    const whatsappUrl = "https://wa.me/13163617579";
+    const whatsappUrl = "https://wa.me/+85246187388";
     const telegramUrl = "https://t.me/Mtradersla_bot";
     const emailAddress = "hello@mtradershklimited.com";
 
