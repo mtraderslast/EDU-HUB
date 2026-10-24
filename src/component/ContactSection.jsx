@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import { sendContactEmail } from "@/lib/action/contact";
 
 function ContactSection() {
-    const whatsappUrl = "https://wa.me/13163617579";
+    const whatsappUrl = "https://wa.me/+85246187388";
     const telegramUrl = "https://t.me/Mtradersla_bot";
 
     const {
@@ -137,13 +137,13 @@ function ContactSection() {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 dark:text-slate-400">WhatsApp Us</p>
-                                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">+1 (316) 361-7579</p>
+                                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">+852 4618 7388</p>
                                 </div>
                             </a>
 
                             {/* Phone */}
                             <a
-                                href="tel:+44 7882740776"
+                                href="tel:+852 4618 7388"
                                 className="flex items-center space-x-3.5 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-[#04cccc] dark:hover:border-[#04cccc] transition-colors group shadow-sm"
                             >
                                 <div className="p-2.5 rounded-md bg-cyan-50 dark:bg-cyan-950/50 text-[#04cccc]">
@@ -151,7 +151,7 @@ function ContactSection() {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 dark:text-slate-400">Call Us Direct</p>
-                                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">+44 7882740776</p>
+                                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">+852 4618 7388</p>
                                 </div>
                             </a>
 
