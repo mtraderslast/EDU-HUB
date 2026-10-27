@@ -68,7 +68,7 @@ export default function RefundPolicyAlert() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                         <div className="space-y-1">
                             <div className="flex items-center gap-2 text-slate-500 dark:text-neutral-400 text-xs font-medium">
@@ -76,25 +76,13 @@ export default function RefundPolicyAlert() {
                                 Legal Name & Entity
                             </div>
                             <p className="text-sm font-bold text-slate-900 dark:text-white">
-                                M Traders Last LLC
+                                M Traders Hk Limited
                             </p>
                             <p className="text-xs text-slate-500 dark:text-neutral-400">
-                                Florida Limited Liability Company
+                                Hong Kong Limited Company
                             </p>
                         </div>
 
-                        <div className="space-y-1">
-                            <div className="flex items-center gap-2 text-slate-500 dark:text-neutral-400 text-xs font-medium">
-                                <ShieldCheck className="w-3.5 h-3.5 text-[#04cccc]" />
-                                Document Registration
-                            </div>
-                            <p className="text-sm font-bold text-slate-900 dark:text-white">
-                                Doc # L26000290590
-                            </p>
-                            <p className="text-xs text-slate-500 dark:text-neutral-400">
-                                State of Florida, United States
-                            </p>
-                        </div>
 
                         <div className="space-y-1">
                             <div className="flex items-center gap-2 text-slate-500 dark:text-neutral-400 text-xs font-medium">
@@ -102,10 +90,10 @@ export default function RefundPolicyAlert() {
                                 Registered Address
                             </div>
                             <p className="text-sm font-bold text-slate-900 dark:text-white">
-                                1317 85 DUNSTALL HILL
+                                Unit B, 11/F, Yam Tze Commercial Building 23 Thomson Road
                             </p>
                             <p className="text-xs text-slate-500 dark:text-neutral-400">
-                                WOLVERHAMPTON WV6 0SR
+                                Wan Chai, Hong Kong
                             </p>
                         </div>
 
@@ -115,7 +103,7 @@ export default function RefundPolicyAlert() {
                                 Corporate Email & Platform
                             </div>
                             <p className="text-sm font-bold text-slate-900 dark:text-white">
-                                hello@mtraderslastllc.com
+                                hello@mtradershklimited.com
                             </p>
                             <div className="flex items-center gap-1 text-xs text-[#04cccc]">
                                 <Globe className="w-3 h-3" />
