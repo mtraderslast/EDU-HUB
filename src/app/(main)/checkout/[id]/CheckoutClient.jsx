@@ -117,8 +117,8 @@ export default function CheckoutClient({ courseData }) {
             console.error('Payment Error:', error);
             Swal.fire({
                 icon: 'error',
-                title: 'Connection Error',
-                text: error.message || 'Unable to connect to payment server.',
+                title: 'Payment Error',
+                text: error.message || 'Unable to start the payment. Please try again.',
                 confirmButtonColor: '#04cccc'
             });
         } finally {
