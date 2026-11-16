@@ -3,6 +3,8 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function CourseCard({ course }) {
+    const courseId = course?._id || course?.id;
+
     return (
         <div className="group bg-white dark:bg-slate-900 rounded-lg border border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-sm transition-all duration-300 flex flex-col h-full">
             {/* Image Container */}
@@ -44,7 +46,7 @@ export default function CourseCard({ course }) {
                     </div>
 
                     <Link
-                        href={`/courses/${course._id}`}
+                        href={courseId ? `/courses/${courseId}` : "/courses"}
                         className="px-5 py-2.5 bg-[#04cccc] hover:bg-[#15a3a3] text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
                     >
                         View Course

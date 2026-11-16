@@ -71,11 +71,14 @@ const AdminEnrollments = () => {
                 const response = await deleteEnrollment(enrollmentId);
 
                 if (response?.success) {
-                    Swal.fire(
-                        'Deleted!',
-                        'The enrollment has been deleted.',
-                        'success'
-                    );
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'The enrollment has been deleted.',
+                        timer: 1000,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                    });
                     loadEnrollments();
                 } else {
                     Swal.fire(
