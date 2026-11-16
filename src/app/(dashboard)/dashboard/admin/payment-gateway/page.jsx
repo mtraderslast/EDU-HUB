@@ -61,7 +61,7 @@ const PaymentGatewayPage = () => {
                     Payment Gateway
                 </h1>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                    Choose the gateway students are sent to when they pay for a course
+                    Choose the gateway students are sent to when they pay for a course. Dodo Payments appears here once its API key is set on the server; only the active gateway is used for new checkouts.
                 </p>
             </div>
 
